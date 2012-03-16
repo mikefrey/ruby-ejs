@@ -111,8 +111,8 @@ class EJSEvaluationTest < Test::Unit::TestCase
   end
 
   test "newlines within interpolation block" do
-    template = "This\n\t\tis: <%= x == true ? 'that' :\n 'something else' %>.\n\tok.\nend."
-    assert_equal "This\n\t\tis: that.\n\tok.\nend.", EJS.evaluate(template, :x => true)
+    template = "This is: <%= x == true ?\n 'that' : \n'something else' %>. ok. end."
+    assert_equal "This is: that. ok. end.", EJS.evaluate(template, :x => true)
   end
 
 
