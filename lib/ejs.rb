@@ -59,7 +59,7 @@ module EJS
 
       def replace_interpolation_tags!(source, options)
         source.gsub!(options[:interpolation_pattern] || interpolation_pattern) do
-          "'," + $1.gsub(/\\'/, "'") + ",'"
+          "'," + $1.gsub(/\\'/, "'").gsub(/[\n]/, ' ') + ",'"
         end
       end
 

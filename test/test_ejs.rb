@@ -110,6 +110,11 @@ class EJSEvaluationTest < Test::Unit::TestCase
     assert_equal "This\n\t\tis: that.\n\tok.\nend.", EJS.evaluate(template, :x => "that")
   end
 
+  test "newlines within interpolation block" do
+    template = "This\n\t\tis: <%= x == true ? 'that' :\n 'something else' %>.\n\tok.\nend."
+    assert_equal "This\n\t\tis: that.\n\tok.\nend.", EJS.evaluate(template, :x => true)
+  end
+
 
   test "braced iteration" do
     template = "<ul>{{ for (var i = 0; i < people.length; i++) { }}<li>{{= people[i] }}</li>{{ } }}</ul>"
